@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/1.png" type="Texture" id=1]
+[ext_resource path="res://enemy_action.gd" type="Script" id=2]
+
+[node name="oponent" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D"]
+polygon = PoolVector2Array( -9.62739, -27.0822, -13.3235, -3.81813, -11.8016, 35.9699, -3.32218, 34.6654, -2.66991, 27.9253, 3.85272, 26.4034, 11.245, 36.4048, 16.898, 9.22713, 9.28825, -28.1693 )
+
+[node name="cuke" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="EnemyTimer" type="Timer" parent="KinematicBody2D/cuke"]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KinematicBody2D/Area2D"]
+polygon = PoolVector2Array( -9.62739, -27.0822, -13.3235, -3.81813, -11.8016, 35.9699, -3.32218, 34.6654, -2.66991, 27.9253, 3.85272, 26.4034, 11.245, 36.4048, 16.898, 9.22713, 9.28825, -28.1693 )
+
+[connection signal="timeout" from="KinematicBody2D/cuke/EnemyTimer" to="KinematicBody2D/cuke" method="_on_Timer_timeout"]
